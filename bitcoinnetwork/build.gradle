@@ -1,0 +1,47 @@
+apply plugin: 'com.android.library'
+apply from: '../versions.gradle'
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    def major = 0
+    def minor = 1
+    def patch = 0
+    def libraryName = "$major.$minor.$patch"
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode major * 10000 + minor * 1000 + patch * 100
+        versionName libraryName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation(
+            deps.retrofit.base,
+            deps.retrofit.converter,
+            deps.retrofit.adapter,
+
+            deps.rxJava.base,
+            deps.rxJava.android,
+
+            deps.okHttp.base,
+            deps.okHttp.log
+    )
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
