@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply from: '../versions.gradle'
 
 android {
@@ -39,7 +41,9 @@ dependencies {
             deps.rxJava.android,
 
             deps.okHttp.base,
-            deps.okHttp.log
+            deps.okHttp.log,
+
+            deps.kotlinLib
     )
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
