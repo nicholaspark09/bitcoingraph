@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply from: "../versions.gradle"
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion versions.compileSdk
     defaultConfig {
         applicationId "com.example.bitcoinprice"
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -24,11 +24,39 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation project(':bitcoinnetwork')
+
+    implementation(
+            'androidx.core:core-ktx:1.0.2',
+            deps.kotlinLib,
+            deps.android.appCompat,
+            deps.android.constraintLayout,
+            deps.android.lifecycle,
+
+            // Dependency Injection
+            deps.dagger.base,
+            deps.dagger.android,
+            deps.dagger.androidSupport,
+
+            deps.rxJava.base,
+            deps.rxJava.android,
+
+            // Utils
+            deps.chart
+    )
+
+    kapt(
+            deps.dagger.compiler,
+            deps.dagger.androidSupportCompiler
+    )
+
+    testImplementation (
+            'junit:junit:4.12',
+            'androidx.arch.core:core-testing:2.0.0',
+            deps.mockk
+    )
+    androidTestImplementation (
+            'androidx.test:runner:1.2.0',
+            'androidx.test.espresso:espresso-core:3.2.0'
+    )
 }
