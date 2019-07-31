@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply from: "../versions.gradle"
 
 android {
@@ -23,16 +24,39 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation (name: 'bitcoinnetwork-0.1.0', ext: 'aar')
+    implementation project(':bitcoinnetwork')
 
     implementation(
             'androidx.core:core-ktx:1.0.2',
             deps.kotlinLib,
             deps.android.appCompat,
-            deps.android.constraintLayout
+            deps.android.constraintLayout,
+            deps.android.lifecycle,
+
+            // Dependency Injection
+            deps.dagger.base,
+            deps.dagger.android,
+            deps.dagger.androidSupport,
+
+            deps.rxJava.base,
+            deps.rxJava.android,
+
+            // Utils
+            deps.chart
     )
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    kapt(
+            deps.dagger.compiler,
+            deps.dagger.androidSupportCompiler
+    )
+
+    testImplementation (
+            'junit:junit:4.12',
+            'androidx.arch.core:core-testing:2.0.0',
+            deps.mockk
+    )
+    androidTestImplementation (
+            'androidx.test:runner:1.2.0',
+            'androidx.test.espresso:espresso-core:3.2.0'
+    )
 }
