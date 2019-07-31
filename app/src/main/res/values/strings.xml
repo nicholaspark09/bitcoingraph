@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">BitCoinPrice</string>
+
+    <string name="bitcoin">Bitcoin</string>
+
+    <!-- Home -->
+    <string name="home_update_button">Update</string>
+    <string name="five_days">5 Days</string>
+    <string name="thirty_days">30 Days</string>
+    <string name="sixty_days">60 Days</string>
+    <string name="one_year">1 Year</string>
+    <string name="two_years">2 Years</string>
+    <string name="all_time">All Time</string>
 </resources>

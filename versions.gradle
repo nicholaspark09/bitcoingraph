@@ -37,5 +37,6 @@ ext.deps = [
                 log : "com.squareup.okhttp3:logging-interceptor:$versions.okHttp"
         ],
         kotlinLib: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin",
-        chart    : 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+        chart    : 'com.github.PhilJay:MPAndroidChart:v3.1.0',
+        mockk    : 'io.mockk:mockk:1.9.3'
 ]

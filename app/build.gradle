@@ -50,7 +50,13 @@ dependencies {
             deps.dagger.androidSupportCompiler
     )
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation (
+            'junit:junit:4.12',
+            'androidx.arch.core:core-testing:2.0.0',
+            deps.mockk
+    )
+    androidTestImplementation (
+            'androidx.test:runner:1.2.0',
+            'androidx.test.espresso:espresso-core:3.2.0'
+    )
 }

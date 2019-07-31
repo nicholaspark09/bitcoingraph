@@ -3,7 +3,7 @@ package com.example.bitcoinprice.di
 import android.app.Application
 import com.example.bitcoinnetwork.repo.BitcoinRepositoryContract
 import com.example.bitcoinprice.BitcoinPriceApplication
-import com.example.bitcoinprice.di.module.MainActivityModule
+import com.example.bitcoinprice.di.module.AppModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -12,7 +12,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-        MainActivityModule::class,
+        AppModule::class,
         AndroidInjectionModule::class
     ]
 )
